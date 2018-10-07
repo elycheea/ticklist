@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ClimbItem from '../ClimbItem';
 import _ from 'lodash';
 
 class ClimbList extends Component {
@@ -8,10 +9,7 @@ class ClimbList extends Component {
         <h1>A list of climbs</h1>
         <ul>
           {this.props.climbs.map((climb, i) => (
-            <li key={i}>
-              {climb.name}
-              <input type="checkbox" checked={climb.sent} onClick={() => this.props.toggleSent(i)}/>
-            </li>
+            <ClimbItem key={i} climb={climb} toggleSent={() => this.props.toggleSent(i)} />
           ))}
         </ul>
       </div>
