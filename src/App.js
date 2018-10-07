@@ -3,6 +3,20 @@ import logo from './logo.svg';
 import './App.css';
 import ClimbList from './components/ClimbList';
 
+// const CLIMBS = [{
+//     name: 'Ace',
+//     sent: true
+//   },
+//   {
+//     name: 'Helicopter',
+//     sent: true
+//   },
+//   {
+//     name: 'Standard Deviation',
+//     sent: true
+//   },
+// ];
+
 class App extends Component {
   render() {
     return (
@@ -14,6 +28,7 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+        {/* <ClimbList climbs={CLIMBS}/> */}
         <ClimbList/>
       </div>
     );
