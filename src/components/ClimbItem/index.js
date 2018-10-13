@@ -6,7 +6,8 @@ class ClimbItem extends Component {
     return (
       <li id="climb-{this.props.index}">
         {this.props.climb.name}
-        <input type="checkbox" checked={this.props.climb.sent} onClick={this.props.toggleSent}/>
+        <input type="checkbox" checked={this.props.climb.sent} onChange={this.props.toggleSent}/>
+        <span onClick={this.props.removeClimb}>&times;</span>
       </li>
     );
   }

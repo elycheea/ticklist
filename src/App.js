@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import ClimbList from './components/ClimbList';
 import _ from 'lodash';
@@ -44,17 +43,25 @@ class App extends Component {
     });
   }
 
+  removeClimb = (index) => {
+    const climbs = _.cloneDeep(this.state.climbs);
+    climbs.splice(index, 1);
+
+    this.setState({ climbs });
+  }
+
   toggleSent = (index) => {
     const climbs = _.cloneDeep(this.state.climbs);
     climbs[index].sent = !climbs[index].sent;
 
     this.setState({ climbs });
   }
+
   
   render() {
     return (
       <div className="App">
-        <ClimbList climbs={this.state.climbs} toggleSent={this.toggleSent}/>
+        <ClimbList climbs={this.state.climbs} toggleSent={this.toggleSent} removeClimb={this.removeClimb}/>
 
         <form type="submit" onSubmit={event => event.preventDefault()}>
           <input type="text" placeholder="Climb name" value={this.state.newClimb} onChange={this.handleChange}/>
