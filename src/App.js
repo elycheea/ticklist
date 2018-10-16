@@ -20,7 +20,9 @@ const CLIMBS = [{
 class App extends Component {
   state = {
     climbs: CLIMBS,
-    newClimb: ''
+    newClimb: '',
+    newClimbStart: '',
+    showDetails: false
   }
 
   handleChange = (event) => {
@@ -34,12 +36,14 @@ class App extends Component {
     const climbs = _.cloneDeep(this.state.climbs);
     climbs.push({
       name: this.state.newClimb,
-      sent: false
+      sent: false,
+      startDate: new Date(this.state.newClimbStart)
     });
 
     this.setState({
       climbs,
-      newClimb: ''
+      newClimb: '',
+      newClimbStart: ''
     });
   }
 
@@ -57,14 +61,42 @@ class App extends Component {
     this.setState({ climbs });
   }
 
+  addDetails = () => {
+    this.setState({ showDetails: !this.state.showDetails });
+  }
+
+  handleDate = (event) => {
+    const newClimbStart = event.target.value;
+    this.setState({
+      newClimbStart
+    });
+  }
+
   
   render() {
+    const showDetails = this.state.showDetails;
+
     return (
       <div className="App">
         <ClimbList climbs={this.state.climbs} toggleSent={this.toggleSent} removeClimb={this.removeClimb}/>
 
         <form type="submit" onSubmit={event => event.preventDefault()}>
           <input type="text" placeholder="Climb name" value={this.state.newClimb} onChange={this.handleChange}/>
+
+          <label htmlFor ="climb-details">
+            <input id="climb-details" type="checkbox" onChange={this.addDetails}/> add more details
+          </label>
+
+          {showDetails &&
+            <fieldset >
+              <legend>Add more details</legend>
+
+              <label htmlFor="start-date">
+                Date started
+                <input id="start-date" type="date" value={this.state.newClimbStart} onChange={this.handleDate}/>
+              </label>
+            </fieldset>
+          }
           <button type="submit" onClick={this.handleClick}>Add climb</button>
         </form>
       </div>

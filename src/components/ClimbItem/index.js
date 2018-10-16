@@ -8,6 +8,10 @@ class ClimbItem extends Component {
         {this.props.climb.name}
         <input type="checkbox" checked={this.props.climb.sent} onChange={this.props.toggleSent}/>
         <span onClick={this.props.removeClimb}>&times;</span>
+
+        {this.props.climb.startDate &&
+          <span>{this.props.climb.startDate.toString()}</span>
+        }
       </li>
     );
   }
