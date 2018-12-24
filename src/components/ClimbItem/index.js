@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
+import date from '../../utils/date';
 
 class ClimbItem extends Component {
   render() {
@@ -10,7 +11,7 @@ class ClimbItem extends Component {
         <span onClick={this.props.removeClimb}>&times;</span>
 
         {this.props.climb.startDate &&
-          <span>{this.props.climb.startDate.toString()}</span>
+          <span>{date.formatDate(this.props.climb.startDate)}</span>
         }
       </li>
     );

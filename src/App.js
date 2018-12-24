@@ -17,6 +17,7 @@ const CLIMBS = [{
   },
 ];
 
+
 class App extends Component {
   state = {
     climbs: CLIMBS,
@@ -34,11 +35,20 @@ class App extends Component {
 
   handleClick = () => {
     const climbs = _.cloneDeep(this.state.climbs);
-    climbs.push({
-      name: this.state.newClimb,
-      sent: false,
-      startDate: new Date(this.state.newClimbStart)
-    });
+
+    if (this.state.newClimb && this.state.newClimbStart) {
+      climbs.push({
+        name: this.state.newClimb,
+        sent: false,
+        startDate: new Date(this.state.newClimbStart)
+      });
+    } else if (this.state.newClimb) {
+      climbs.push({
+        name: this.state.newClimb,
+        sent: false,
+        startDate: null
+      });
+    }
 
     this.setState({
       climbs,
@@ -71,7 +81,6 @@ class App extends Component {
       newClimbStart
     });
   }
-
   
   render() {
     const showDetails = this.state.showDetails;
