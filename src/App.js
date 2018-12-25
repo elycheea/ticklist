@@ -23,6 +23,7 @@ class App extends Component {
     climbs: CLIMBS,
     newClimb: '',
     newClimbStart: '',
+    newClimbNotes: '',
     showDetails: false
   }
 
@@ -40,20 +41,23 @@ class App extends Component {
       climbs.push({
         name: this.state.newClimb,
         sent: false,
-        startDate: new Date(this.state.newClimbStart)
+        startDate: new Date(this.state.newClimbStart),
+        notes: this.state.newClimbNotes
       });
     } else if (this.state.newClimb) {
       climbs.push({
         name: this.state.newClimb,
         sent: false,
-        startDate: null
+        startDate: null,
+        notes: this.state.newClimbNotes
       });
     }
 
     this.setState({
       climbs,
       newClimb: '',
-      newClimbStart: ''
+      newClimbStart: '',
+      newClimbNotes: ''
     });
   }
 
@@ -81,6 +85,13 @@ class App extends Component {
       newClimbStart
     });
   }
+
+  handleNotes = (event) => {
+    const newClimbNotes = event.target.value;
+    this.setState({
+      newClimbNotes
+    });
+  }
   
   render() {
     const showDetails = this.state.showDetails;
@@ -103,6 +114,11 @@ class App extends Component {
               <label htmlFor="start-date">
                 Date started
                 <input id="start-date" type="date" value={this.state.newClimbStart} onChange={this.handleDate}/>
+              </label>
+
+              <label htmlFor="notes">
+                Date started
+                <textarea id="notes" value={this.state.newClimbNotes} onChange={this.handleNotes}/>
               </label>
             </fieldset>
           }

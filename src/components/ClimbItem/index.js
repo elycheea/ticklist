@@ -13,6 +13,10 @@ class ClimbItem extends Component {
         {this.props.climb.startDate &&
           <span>{date.formatDate(this.props.climb.startDate)}</span>
         }
+
+        {this.props.climb.notes &&
+          <p>{this.props.climb.notes}</p>
+        }
       </li>
     );
   }
