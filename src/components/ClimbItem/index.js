@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import date from '../../utils/date';
+// import date from '../../utils/date';
+import moment from 'moment';
 
 class ClimbItem extends Component {
   render() {
@@ -11,7 +12,7 @@ class ClimbItem extends Component {
         <span onClick={this.props.removeClimb}>&times;</span>
 
         {this.props.climb.startDate &&
-          <span>{date.formatDate(this.props.climb.startDate)}</span>
+          <span>{moment(this.props.climb.startDate).format('MMM D, YYYY')}</span>
         }
 
         {this.props.climb.notes &&

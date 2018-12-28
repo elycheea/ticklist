@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import ClimbList from './components/ClimbList';
 import _ from 'lodash';
+import moment from 'moment';
 
 const CLIMBS = [{
     name: 'Ace',
@@ -41,7 +42,7 @@ class App extends Component {
       climbs.push({
         name: this.state.newClimb,
         sent: false,
-        startDate: new Date(this.state.newClimbStart),
+        startDate: moment(this.state.newClimbStart),
         notes: this.state.newClimbNotes
       });
     } else if (this.state.newClimb) {
