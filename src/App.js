@@ -6,15 +6,26 @@ import moment from 'moment';
 
 const CLIMBS = [{
     name: 'Ace',
-    sent: true
+    grade: 'V5',
+    startDate: new Date('Oct 22, 2016'),
+    sentDate: new Date('Mar 11, 2017'),
   },
   {
     name: 'Helicopter',
-    sent: true
+    grade: 'V6',
+    startDate: new Date('Feb 25, 2017'),
+    sentDate: new Date('Feb 25, 2017'),
   },
   {
     name: 'Standard Variation',
-    sent: true
+    grade: 'V5',
+    startDate: new Date('Feb 25, 2017'),
+    sentDate: new Date('Mar 4, 2017'),
+  },
+  {
+    name: 'Isle of Beautiful Women',
+    grade: 'V4',
+    startDate: new Date('Oct 22, 2016'),
   },
 ];
 
@@ -23,8 +34,9 @@ class App extends Component {
   state = {
     climbs: CLIMBS,
     newClimb: '',
-    newClimbStart: '',
     newClimbGrade: '',
+    newClimbStart: '',
+    newClimbSent: '',
     newClimbNotes: '',
     showDetails: false
   }
@@ -43,16 +55,16 @@ class App extends Component {
       climbs.push({
         name: this.state.newClimb,
         grade: this.state.newClimbGrade,
-        sent: false,
         startDate: moment(this.state.newClimbStart),
+        sentDate: moment(this.state.newClimbSent),
         notes: this.state.newClimbNotes
       });
     } else if (this.state.newClimb) {
       climbs.push({
         name: this.state.newClimb,
         grade: this.state.newClimbGrade,
-        sent: false,
         startDate: null,
+        sentDate: null,
         notes: this.state.newClimbNotes
       });
     }
@@ -62,6 +74,7 @@ class App extends Component {
       newClimb: '',
       newClimbGrade: '',
       newClimbStart: '',
+      newClimbSent: '',
       newClimbNotes: ''
     });
   }
@@ -69,13 +82,6 @@ class App extends Component {
   removeClimb = (index) => {
     const climbs = _.cloneDeep(this.state.climbs);
     climbs.splice(index, 1);
-
-    this.setState({ climbs });
-  }
-
-  toggleSent = (index) => {
-    const climbs = _.cloneDeep(this.state.climbs);
-    climbs[index].sent = !climbs[index].sent;
 
     this.setState({ climbs });
   }

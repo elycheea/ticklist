@@ -9,25 +9,33 @@ class ClimbItem extends Component {
   render() {
     return (
       <li className="climb-row" id="climb-{this.props.index}">
-        <input type="checkbox" checked={this.props.climb.sent} onChange={this.props.toggleSent}/>
+        {this.props.climb.sentDate ? (
+          <span>✓</span>
+        ) : (
+          <span>🤷🏻‍♀️</span>
+        )}
 
         <div className="climb__info">
           {this.props.climb.name}
           
-          {this.props.climb.grade &&
+          {this.props.climb.grade && (
             <span>({this.props.climb.grade})</span>
-          }
+          )}
         </div>
 
         <div className="climb__dates">
-          {this.props.climb.startDate &&
+          {this.props.climb.startDate && (
             <span>{moment(this.props.climb.startDate).format('MMM D, YYYY')}</span>
-          }
+          )}
 
-          {this.props.climb.notes &&
-            <p>{this.props.climb.notes}</p>
-          }
+          {this.props.climb.sentDate && (
+            <span>{moment(this.props.climb.sentDate).format('MMM D, YYYY')}</span>
+          )}
         </div>
+
+        {this.props.climb.notes && (
+          <p>{this.props.climb.notes}</p>
+        )}
 
         <span className="action--remove" onClick={this.props.removeClimb}>&times;</span>
       </li>
