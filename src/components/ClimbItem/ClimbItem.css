@@ -1,0 +1,7 @@
+.climb-row {
+  display: flex;
+}
+
+.action--remove {
+  margin-left: auto;
+}

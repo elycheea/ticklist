@@ -24,6 +24,7 @@ class App extends Component {
     climbs: CLIMBS,
     newClimb: '',
     newClimbStart: '',
+    newClimbGrade: '',
     newClimbNotes: '',
     showDetails: false
   }
@@ -41,6 +42,7 @@ class App extends Component {
     if (this.state.newClimb && this.state.newClimbStart) {
       climbs.push({
         name: this.state.newClimb,
+        grade: this.state.newClimbGrade,
         sent: false,
         startDate: moment(this.state.newClimbStart),
         notes: this.state.newClimbNotes
@@ -48,6 +50,7 @@ class App extends Component {
     } else if (this.state.newClimb) {
       climbs.push({
         name: this.state.newClimb,
+        grade: this.state.newClimbGrade,
         sent: false,
         startDate: null,
         notes: this.state.newClimbNotes
@@ -57,6 +60,7 @@ class App extends Component {
     this.setState({
       climbs,
       newClimb: '',
+      newClimbGrade: '',
       newClimbStart: '',
       newClimbNotes: ''
     });
@@ -93,6 +97,13 @@ class App extends Component {
       newClimbNotes
     });
   }
+
+  handleGrade = (event) => {
+    const newClimbGrade = event.target.value;
+    this.setState({
+      newClimbGrade
+    });
+  }
   
   render() {
     const showDetails = this.state.showDetails;
@@ -103,6 +114,11 @@ class App extends Component {
 
         <form type="submit" onSubmit={event => event.preventDefault()}>
           <input type="text" placeholder="Climb name" value={this.state.newClimb} onChange={this.handleChange}/>
+
+          <label htmlFor="climb-grade">
+            Grade
+            <input type="text" placeholder="V0... +/-" value={this.state.newClimbGrade} onChange={this.handleGrade} id="climb-grade" />
+          </label>
 
           <label htmlFor ="climb-details">
             <input id="climb-details" type="checkbox" onChange={this.addDetails}/> add more details
@@ -118,7 +134,7 @@ class App extends Component {
               </label>
 
               <label htmlFor="notes">
-                Date started
+                Notes
                 <textarea id="notes" value={this.state.newClimbNotes} onChange={this.handleNotes}/>
               </label>
             </fieldset>
