@@ -71,8 +71,8 @@ class App extends Component {
     }
   }
 
-  removeClimb = (indexToDelete) => {
-    api.removeClimb(indexToDelete)
+  removeClimb = (idToDelete) => {
+    api.removeClimb(idToDelete)
       .then((climbs) => {
         this.setState({ climbs });
       });

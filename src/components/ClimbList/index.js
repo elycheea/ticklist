@@ -14,7 +14,7 @@ class ClimbList extends Component {
               index={i}
               climb={climb}
               toggleSent={() => this.props.toggleSent(i)}
-              removeClimb={() => this.props.removeClimb(i)} 
+              removeClimb={() => this.props.removeClimb(climb._id)} 
             />
           ))}
         </ul>

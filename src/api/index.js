@@ -10,8 +10,8 @@ const addClimb = (climb) => {
     .then(res => res.data);
 };
 
-const removeClimb = (indexToDelete) => {
-  return axios.delete('/api/climbs', { data: {indexToDelete} })
+const removeClimb = (idToDelete) => {
+  return axios.delete('/api/climbs', { data: {idToDelete} })
     .then(res => res.data);
 };
 

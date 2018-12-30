@@ -24,8 +24,8 @@ app.post('/api/climbs', (req, res) => {
 });
 
 app.delete('/api/climbs', (req, res) => {
-  const { indexToDelete } = req.body;
-  db.removeClimb(indexToDelete)
+  const { idToDelete } = req.body;
+  db.removeClimb(idToDelete)
     .then((updatedClimbs) => {
       res.send(updatedClimbs);
     });
