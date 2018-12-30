@@ -1,5 +1,4 @@
 .climb-row {
-  display: flex;
   padding: 1em 1.5em;
 
   & ~ .climb-row {
@@ -7,8 +6,14 @@
   }
 }
 
+.climb__summary,
+.climb__details {
+  display: flex;
+}
+
 .climb__dates {
   margin-left: auto;
+  text-align: right;
 }
 
 .climb-date {
@@ -18,5 +23,6 @@
 .action--remove {
   padding-right: 1em;
   padding-left: 1em;
+  margin-left: auto;
   cursor: pointer;
 }

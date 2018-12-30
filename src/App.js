@@ -33,7 +33,7 @@ const CLIMBS = [{
 class App extends Component {
   state = {
     climbs: CLIMBS,
-    newClimb: '',
+    newClimbName: '',
     newClimbGrade: '',
     newClimbStart: '',
     newClimbSent: '',
@@ -41,27 +41,27 @@ class App extends Component {
     showDetails: false
   }
 
-  handleChange = (event) => {
-    const newClimb = event.target.value;
+  handleChange = (changedKey, event) => {
+    const newClimbValue = event.target.value;
     this.setState({
-      newClimb
+      [changedKey]: newClimbValue
     });
   }
 
   handleClick = () => {
     const climbs = _.cloneDeep(this.state.climbs);
 
-    if (this.state.newClimb && this.state.newClimbStart) {
+    if (this.state.newClimbName && this.state.newClimbStart) {
       climbs.push({
-        name: this.state.newClimb,
+        name: this.state.newClimbName,
         grade: this.state.newClimbGrade,
         startDate: moment(this.state.newClimbStart),
         sentDate: moment(this.state.newClimbSent),
         notes: this.state.newClimbNotes
       });
-    } else if (this.state.newClimb) {
+    } else if (this.state.newClimbName) {
       climbs.push({
-        name: this.state.newClimb,
+        name: this.state.newClimbName,
         grade: this.state.newClimbGrade,
         startDate: null,
         sentDate: null,
@@ -71,7 +71,7 @@ class App extends Component {
 
     this.setState({
       climbs,
-      newClimb: '',
+      newClimbName: '',
       newClimbGrade: '',
       newClimbStart: '',
       newClimbSent: '',
@@ -89,27 +89,6 @@ class App extends Component {
   addDetails = () => {
     this.setState({ showDetails: !this.state.showDetails });
   }
-
-  handleDate = (event) => {
-    const newClimbStart = event.target.value;
-    this.setState({
-      newClimbStart
-    });
-  }
-
-  handleNotes = (event) => {
-    const newClimbNotes = event.target.value;
-    this.setState({
-      newClimbNotes
-    });
-  }
-
-  handleGrade = (event) => {
-    const newClimbGrade = event.target.value;
-    this.setState({
-      newClimbGrade
-    });
-  }
   
   render() {
     const showDetails = this.state.showDetails;
@@ -119,11 +98,11 @@ class App extends Component {
         <ClimbList climbs={this.state.climbs} toggleSent={this.toggleSent} removeClimb={this.removeClimb}/>
 
         <form onSubmit={event => event.preventDefault()}>
-          <input type="text" placeholder="Climb name" value={this.state.newClimb} onChange={this.handleChange}/>
+          <input type="text" placeholder="Climb name" value={this.state.newClimbName} onChange={(event) => this.handleChange('newClimbName', event, )}/>
 
           <label htmlFor="climb-grade">
             Grade
-            <input type="text" placeholder="V0... +/-" value={this.state.newClimbGrade} onChange={this.handleGrade} id="climb-grade" />
+            <input type="text" placeholder="V0... +/-" value={this.state.newClimbGrade} onChange={(event) => this.handleChange('newClimbGrade', event)} id="climb-grade" />
           </label>
 
           <label htmlFor ="climb-details">
@@ -136,12 +115,17 @@ class App extends Component {
 
               <label htmlFor="start-date">
                 Date started
-                <input id="start-date" type="date" value={this.state.newClimbStart} onChange={this.handleDate}/>
+                <input id="start-date" type="date" value={this.state.newClimbStart} onChange={(event) => this.handleChange('newClimbStart', event)}/>
+              </label>
+
+              <label htmlFor="sent-date">
+                Date sent
+                <input id="start-date" type="date" value={this.state.newClimbSent} onChange={(event) => this.handleChange('newClimbSent', event)}/>
               </label>
 
               <label htmlFor="notes">
                 Notes
-                <textarea id="notes" value={this.state.newClimbNotes} onChange={this.handleNotes}/>
+                <textarea id="notes" value={this.state.newClimbNotes} onChange={(event) => this.handleChange('newClimbNotes', event)}/>
               </label>
             </fieldset>
           }
