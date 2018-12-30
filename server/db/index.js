@@ -28,19 +28,19 @@ const CLIMBS = [
   },
 ];
 
-const getClimbs = () => {
-  return CLIMBS;
-};
+const getClimbs = () => new Promise((resolve) => {
+  return resolve(CLIMBS);
+});
 
-const addClimb = (newClimb) => {
+const addClimb = (newClimb) => new Promise((resolve) => {
   CLIMBS.push(newClimb);
-  return CLIMBS;
-};
+  return resolve(CLIMBS);
+});
 
-const removeClimb = (indexToDelete) => {
+const removeClimb = (indexToDelete) => new Promise((resolve) => {
   CLIMBS.splice(indexToDelete, 1);
-  return CLIMBS;
-};
+  return resolve(CLIMBS);
+});
 
 module.exports = {
   getClimbs,
