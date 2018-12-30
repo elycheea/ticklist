@@ -1,42 +1,14 @@
 import React, { Component } from 'react';
-import './App.css';
-import ClimbList from './components/ClimbList';
 import _ from 'lodash';
 import moment from 'moment';
 
-const CLIMBS = [{
-    name: 'Ace',
-    grade: 'V5',
-    crag: 'Rocktown',
-    startDate: new Date('Oct 22, 2016'),
-    sentDate: new Date('Mar 11, 2017'),
-  },
-  {
-    name: 'Helicopter',
-    grade: 'V6',
-    crag: 'Rocktown',
-    startDate: new Date('Feb 25, 2017'),
-    sentDate: new Date('Feb 25, 2017'),
-  },
-  {
-    name: 'Standard Variation',
-    grade: 'V5',
-    crag: 'Rocktown',
-    startDate: new Date('Feb 25, 2017'),
-    sentDate: new Date('Mar 4, 2017'),
-  },
-  {
-    name: 'Isle of Beautiful Women',
-    grade: 'V4',
-    crag: 'Rocktown',
-    startDate: new Date('Oct 22, 2016'),
-  },
-];
-
+import api from './api';
+import './App.css';
+import ClimbList from './components/ClimbList';
 
 class App extends Component {
   state = {
-    climbs: CLIMBS,
+    climbs: [],
     newClimbName: '',
     newClimbGrade: '',
     newClimbLocation: '',
@@ -44,6 +16,13 @@ class App extends Component {
     newClimbSent: '',
     newClimbNotes: '',
     showDetails: false
+  }
+
+  componentDidMount() {
+    api.getClimbs()
+      .then((climbs) => {
+        this.setState({ climbs })
+      });
   }
 
   handleChange = (changedKey, event) => {
@@ -54,44 +33,49 @@ class App extends Component {
   }
 
   handleClick = () => {
-    const climbs = _.cloneDeep(this.state.climbs);
+    let newClimb;
 
     if (this.state.newClimbName && this.state.newClimbStart) {
-      climbs.push({
+      newClimb = {
         name: this.state.newClimbName,
         grade: this.state.newClimbGrade,
         crag: this.state.newClimbLocation,
         startDate: moment(this.state.newClimbStart),
         sentDate: moment(this.state.newClimbSent),
         notes: this.state.newClimbNotes
-      });
+      }
     } else if (this.state.newClimbName) {
-      climbs.push({
+      newClimb = {
         name: this.state.newClimbName,
         grade: this.state.newClimbGrade,
         crag: this.state.newClimbLocation,
         startDate: null,
         sentDate: null,
         notes: this.state.newClimbNotes
-      });
+      };
     }
 
-    this.setState({
-      climbs,
-      newClimbName: '',
-      newClimbGrade: '',
-      newClimbLocation: '',
-      newClimbStart: '',
-      newClimbSent: '',
-      newClimbNotes: ''
-    });
+    if (newClimb) {
+      api.addClimb(newClimb)
+        .then((climbs) => {
+          this.setState({
+            climbs,
+            newClimbName: '',
+            newClimbGrade: '',
+            newClimbLocation: '',
+            newClimbStart: '',
+            newClimbSent: '',
+            newClimbNotes: '',
+          });
+        });
+    }
   }
 
-  removeClimb = (index) => {
-    const climbs = _.cloneDeep(this.state.climbs);
-    climbs.splice(index, 1);
-
-    this.setState({ climbs });
+  removeClimb = (indexToDelete) => {
+    api.removeClimb(indexToDelete)
+      .then((climbs) => {
+        this.setState({ climbs });
+      });
   }
 
   addDetails = () => {

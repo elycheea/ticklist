@@ -30,11 +30,11 @@ class ClimbItem extends Component {
 
           <div className="climb__dates">
             {this.props.climb.startDate && (
-              <span class="climb-date">{moment(this.props.climb.startDate).format('MMM D, YYYY')}</span>
+              <span className="climb-date">{moment(this.props.climb.startDate).format('MMM D, YYYY')}</span>
             )}
 
             {this.props.climb.sentDate && (
-              <span class="climb-date">{moment(this.props.climb.sentDate).format('MMM D, YYYY')}</span>
+              <span className="climb-date">{moment(this.props.climb.sentDate).format('MMM D, YYYY')}</span>
             )}
           </div>
         </summary>
