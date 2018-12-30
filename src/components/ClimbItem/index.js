@@ -22,6 +22,10 @@ class ClimbItem extends Component {
             {this.props.climb.grade && (
               <span>({this.props.climb.grade})</span>
             )}
+
+            {this.props.climb.crag && (
+              <span className="climb-location">{this.props.climb.crag}</span>
+            )}
           </div>
 
           <div className="climb__dates">

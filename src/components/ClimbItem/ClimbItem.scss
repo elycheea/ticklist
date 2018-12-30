@@ -11,6 +11,11 @@
   display: flex;
 }
 
+.climb-location {
+  display: block;
+  text-align: left;
+}
+
 .climb__dates {
   margin-left: auto;
   text-align: right;
@@ -19,6 +24,7 @@
 .climb-date {
   display: block;
 }
+
 
 .action--remove {
   padding-right: 1em;

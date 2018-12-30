@@ -7,24 +7,28 @@ import moment from 'moment';
 const CLIMBS = [{
     name: 'Ace',
     grade: 'V5',
+    crag: 'Rocktown',
     startDate: new Date('Oct 22, 2016'),
     sentDate: new Date('Mar 11, 2017'),
   },
   {
     name: 'Helicopter',
     grade: 'V6',
+    crag: 'Rocktown',
     startDate: new Date('Feb 25, 2017'),
     sentDate: new Date('Feb 25, 2017'),
   },
   {
     name: 'Standard Variation',
     grade: 'V5',
+    crag: 'Rocktown',
     startDate: new Date('Feb 25, 2017'),
     sentDate: new Date('Mar 4, 2017'),
   },
   {
     name: 'Isle of Beautiful Women',
     grade: 'V4',
+    crag: 'Rocktown',
     startDate: new Date('Oct 22, 2016'),
   },
 ];
@@ -35,6 +39,7 @@ class App extends Component {
     climbs: CLIMBS,
     newClimbName: '',
     newClimbGrade: '',
+    newClimbLocation: '',
     newClimbStart: '',
     newClimbSent: '',
     newClimbNotes: '',
@@ -55,6 +60,7 @@ class App extends Component {
       climbs.push({
         name: this.state.newClimbName,
         grade: this.state.newClimbGrade,
+        crag: this.state.newClimbLocation,
         startDate: moment(this.state.newClimbStart),
         sentDate: moment(this.state.newClimbSent),
         notes: this.state.newClimbNotes
@@ -63,6 +69,7 @@ class App extends Component {
       climbs.push({
         name: this.state.newClimbName,
         grade: this.state.newClimbGrade,
+        crag: this.state.newClimbLocation,
         startDate: null,
         sentDate: null,
         notes: this.state.newClimbNotes
@@ -73,6 +80,7 @@ class App extends Component {
       climbs,
       newClimbName: '',
       newClimbGrade: '',
+      newClimbLocation: '',
       newClimbStart: '',
       newClimbSent: '',
       newClimbNotes: ''
@@ -121,6 +129,11 @@ class App extends Component {
               <label htmlFor="sent-date">
                 Date sent
                 <input id="start-date" type="date" value={this.state.newClimbSent} onChange={(event) => this.handleChange('newClimbSent', event)}/>
+              </label>
+
+              <label htmlFor="crag-name">
+                Crag name
+                <input id="crag-name" type="text" value={this.state.newClimbLocation} onChange={(event) => this.handleChange('newClimbLocation', event)}/>
               </label>
 
               <label htmlFor="notes">
