@@ -29,7 +29,12 @@ app.delete('/api/climbs', (req, res) => {
     .then((updatedClimbs) => {
       res.send(updatedClimbs);
     });
-})
+});
+
+app.put('/api/rehydrate', (req, res) => {
+  db.rehydrateDatabase()
+    .then(() => res.sendStatus(200));
+});
 
 let port = process.env.port || 3001;
 app.listen(port, () => console.log(`Now listening on ${port}`));
