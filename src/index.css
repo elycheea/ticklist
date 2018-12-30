@@ -1,3 +1,31 @@
+/* Additional margin and padding CSS resets */
+h1, h2, h3, h4, h5, h6,
+ul, li,
+p, blockquote {
+  margin: 0;
+  padding: 0;
+}
+
+/* Use border-box by default */
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+
+/* Set max-width to media and objects */
+embed, iframe, img, object, video {
+  max-width: 100%;
+}
+
+/* Base styles */
+html, body {
+  height: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
