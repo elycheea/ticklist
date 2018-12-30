@@ -1,8 +1,22 @@
 .climb-row {
   display: flex;
   padding: 1em 1.5em;
+
+  & ~ .climb-row {
+    border-top: 1px solid #eaeaea;
+  }
+}
+
+.climb__dates {
+  margin-left: auto;
+}
+
+.climb-date {
+  display: block;
 }
 
 .action--remove {
-  margin-left: auto;
+  padding-right: 1em;
+  padding-left: 1em;
+  cursor: pointer;
 }
