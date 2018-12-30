@@ -118,7 +118,7 @@ class App extends Component {
       <div className="App">
         <ClimbList climbs={this.state.climbs} toggleSent={this.toggleSent} removeClimb={this.removeClimb}/>
 
-        <form type="submit" onSubmit={event => event.preventDefault()}>
+        <form onSubmit={event => event.preventDefault()}>
           <input type="text" placeholder="Climb name" value={this.state.newClimb} onChange={this.handleChange}/>
 
           <label htmlFor="climb-grade">

@@ -8,7 +8,7 @@ import './ClimbItem.css';
 class ClimbItem extends Component {
   render() {
     return (
-      <li className="climb-row" id="climb-{this.props.index}">
+      <li className="climb-row" id={`climb-${this.props.index}`}>
         {this.props.climb.sentDate ? (
           <span>✓</span>
         ) : (

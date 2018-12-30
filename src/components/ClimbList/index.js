@@ -9,7 +9,13 @@ class ClimbList extends Component {
         <h1>A list of climbs</h1>
         <ul>
           {this.props.climbs.map((climb, i) => (
-            <ClimbItem key={i} climb={climb} toggleSent={() => this.props.toggleSent(i)} removeClimb={() => this.props.removeClimb(i)} />
+            <ClimbItem
+              key={i}
+              index={i}
+              climb={climb}
+              toggleSent={() => this.props.toggleSent(i)}
+              removeClimb={() => this.props.removeClimb(i)} 
+            />
           ))}
         </ul>
       </div>
