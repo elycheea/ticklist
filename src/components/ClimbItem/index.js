@@ -11,9 +11,9 @@ class ClimbItem extends Component {
       <details className="climb-row" id={`climb-${this.props.index}`}>
         <summary className="climb__summary">
           {this.props.climb.sentDate ? (
-            <span>✓</span>
+            <span role="img" aria-label="Climb completed">✓</span>
           ) : (
-            <span>🤷🏻‍♀️</span>
+            <span role="img" aria-label="Climb incomplete">🤷🏻‍♀️</span>
           )}
 
           <div className="climb__info">

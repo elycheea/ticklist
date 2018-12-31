@@ -5,8 +5,8 @@ const climbSchema = new Schema({
   name: String,
   grade: String,
   crag: String,
-  startDate: String,
-  sentDate: String,
+  startDate: Date,
+  sentDate: Date,
   notes: String
 });
 

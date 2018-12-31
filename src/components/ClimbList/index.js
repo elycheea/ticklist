@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ClimbItem from '../ClimbItem';
-import _ from 'lodash';
+// import _ from 'lodash';
 
 class ClimbList extends Component {
   render() {
